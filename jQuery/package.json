@@ -1,0 +1,9 @@
+{
+  "name": "jQuery",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^2.8.3"
+  }
+}
