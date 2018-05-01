@@ -2,11 +2,10 @@
   "compileOnSave": true,
   "compilerOptions": {
     "target": "es5",
-    "declaration": true,
+    "declaration": false,
     "experimentalDecorators": true,
     "isolatedModules": false,
     "sourceMap": true,
-    "types": [],
     "noImplicitAny": false,
     "noImplicitReturns": true,
     "noImplicitThis": true,
@@ -15,7 +14,9 @@
     "strictFunctionTypes": true,
     "skipLibCheck": true,
     "lib": ["es2015", "es2017", "dom"],
-    "outDir": "./dist",
     "removeComments": true
-  }
+  },
+  "include": [
+    "./src"
+  ]
 }
