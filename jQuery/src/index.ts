@@ -1,44 +1,4 @@
-import { DomHelper } from "./utils";
-
-////////////////////////    jQuery实例方法    ////////////////////////
-namespace JQuery {
-  export interface AjaxSettings {}
-}
-
-/**
- * jQuery的实例
- *
- * @class JQuery
- */
-class JQuery {
-  public length = 0;
-  constructor(public selector: string, public context?, root?) {
-    // HANDLE: $(""), $(null), $(undefined), $(false)
-    if (!selector) return this;
-
-    const nodes = document.querySelectorAll(selector);
-    nodes.forEach((e, i) => (this[i] = e));
-    this.length = nodes.length;
-  }
-
-  forEach(callbackfn: (value: Element, index: number) => void) {}
-
-  /**
-   * 为每个匹配的元素添加指定的样式类名
-   *
-   * @param {string} className
-   * @returns
-   * @memberof JQuery
-   */
-  addClass(className: string) {
-    Object.keys(this)
-      .filter(key => Number(key) % 1 === 0)
-      .forEach(key => {
-        DomHelper.addClass(this[key], className);
-      });
-    return this;
-  }
-}
+import JQuery from "./core";
 
 ////////////////////////    jQuery静态方法    ////////////////////////
 function JQueryStatic(selector: string): JQuery {
@@ -87,8 +47,39 @@ namespace JQueryStatic {
     }
   }
 
+  /**
+   * 创建一个数组或对象序列化的的字符串，适用于一个URL 地址查询字符串或Ajax请求。
+   *
+   * @export
+   * @param {any} [obj={}]
+   * @param {boolean} traditional
+   */
   export function param(obj = {}, traditional: boolean) {}
+
+  export const fn = {
+    /**
+     * 一个对象的内容合并到jQuery的原型，以提供新的jQuery实例方法。
+     */
+    extend: function(obj: Object) {
+      Object.keys(obj).forEach(key => {
+        JQuery.prototype[key] = obj[key];
+      });
+    }
+  };
+
+  /**
+   * 将两个或更多对象的内容合并到第一个对象。
+   * 
+   * @export
+   * @param {any} target 
+   * @param {any} objects 
+   * @returns 
+   */
+  export function extend(target, ...objects) {
+    return Object.assign(target, ...objects);
+  }
 }
+
 
 window["jQuery"] = JQueryStatic;
 window["$"] = JQueryStatic;
