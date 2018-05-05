@@ -2,7 +2,19 @@ import { DomHelper } from "./utils";
 
 ////////////////////////    jQuery实例方法    ////////////////////////
 namespace JQuery {
-  export interface AjaxSettings {}
+  export interface AjaxSettings {
+    async?: boolean;
+    cache?: boolean;
+    contentType?: string;
+    data?: Object;
+    dataType?: string;
+    headers?: Object;
+    traditional?: boolean;
+    type?: string;
+    url?: string;
+    success?: (data) => void;
+    [key: string]: any;
+  }
 }
 
 /**
@@ -175,17 +187,17 @@ class JQuery {
   ///////////// 数据操作 ///////////////////
   /**
    * 返回匹配的元素集合中的第一个元素的给定名称的数据存储的值。 通过.data(name, value)或HTML5 data-* 属性设置
-   * 
-   * @param {any} key 
+   *
+   * @param {any} key
    * @memberof JQuery
    */
   data(key);
   /**
    * 在匹配元素上存储任意相关数据.
-   * 
-   * @param {string} key 
-   * @param {*} [value] 
-   * @returns 
+   *
+   * @param {string} key
+   * @param {*} [value]
+   * @returns
    * @memberof JQuery
    */
   data(key: string, value?: any) {
@@ -202,9 +214,9 @@ class JQuery {
 
   /**
    * 在元素上移除绑定的数据
-   * 
-   * @param {string} key 
-   * @returns 
+   *
+   * @param {string} key
+   * @returns
    * @memberof JQuery
    */
   removeData(key: string) {

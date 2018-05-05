@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "types": "dist/index.d.ts",
   "scripts": {
     "dev": "webpack --mode development --watch",
     "build": "webpack --mode production"

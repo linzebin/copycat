@@ -14,6 +14,9 @@ class DomHelper {
     }
     elem.className = typeof set.trim === "function" ? set.trim() : set.replace(/^\s+|\s+$/g, "");
   }
+  static getClass(elem: HTMLElement): string {
+    return (elem.getAttribute && elem.getAttribute("class")) || "";
+  }
 }
 
 class Tools {
