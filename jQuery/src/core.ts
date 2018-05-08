@@ -71,6 +71,46 @@ class JQuery {
   }
 
   /**
+   * 获取集合中第一个匹配元素的HTML内容 或 设置每一个匹配元素的html内容
+   * 
+   * @memberof JQuery
+   */
+  html();
+  /**
+   * 设置每一个匹配元素的html内容
+   * 
+   * @param {string} [htmlString] 
+   * @returns 
+   * @memberof JQuery
+   */
+  html(htmlString?: string) {
+    if (this.length === 0) return;
+    if (!htmlString) {
+      return (this[0] as HTMLElement).innerHTML;
+    } else {
+      return this.each((index, el) => {
+        el.innerHTML = htmlString;
+      });
+    }
+  }
+
+  /**
+   * 确定任何一个匹配元素是否有被分配给定的（样式）类。
+   *
+   * @param {string} className
+   * @returns {boolean}
+   * @memberof JQuery
+   */
+  hasClass(className: string): boolean {
+    if (this.length === 0 || !className) return false;
+    let hasClassFlag = false;
+    this.each((index, el) => {
+      hasClassFlag = hasClassFlag || DomHelper.hasClass(el, className);
+    });
+    return hasClassFlag;
+  }
+
+  /**
    * 为匹配的元素集合中的每个元素中移除一个属性
    *
    * @param {string} attributeName

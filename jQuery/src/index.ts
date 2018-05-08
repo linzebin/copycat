@@ -1,4 +1,5 @@
 import JQuery from "./core";
+import JQueryCallbacks from "./callbacks"
 
 ////////////////////////    jQuery静态方法    ////////////////////////
 function JQueryStatic(selector: string): JQuery {
@@ -63,7 +64,6 @@ namespace JQueryStatic {
         targetSettings.complete(xhr);
       }
     };
-
   }
 
   /**
@@ -109,6 +109,8 @@ namespace JQueryStatic {
   export function extend(target, ...objects) {
     return Object.assign(target, ...objects);
   }
+
+  export const Callbacks = () => JQueryCallbacks;
 }
 
 window["jQuery"] = JQueryStatic;
