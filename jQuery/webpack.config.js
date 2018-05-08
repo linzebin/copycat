@@ -8,6 +8,7 @@ module.exports = (env, argv) => ({
     path: path.resolve(__dirname, "dist"),
     filename: argv.mode === "development" ? "jquery.js" : "jquery.min.js"
   },
+  devtool: "source-map",
   resolve: {
     extensions: [".ts", ".tsx", ".js"]
   },
@@ -19,7 +20,8 @@ module.exports = (env, argv) => ({
           loader: "ts-loader"
         },
         exclude: /node_modules/
-      }
+      },
+      { enforce: "pre", test: /\.js$/, loader: "source-map-loader" }
     ]
   }
 });
